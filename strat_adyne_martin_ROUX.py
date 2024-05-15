@@ -254,7 +254,7 @@ def get_p_l_rsi(df,start_date, end_date, initial_investment):
 # In[89]:
 
 
-## Results since 1996
+## Results since 1993
 
 ticker='SPY'
 period='30y'
