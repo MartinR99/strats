@@ -48,7 +48,7 @@ options.add_argument("--headless")
 options.add_argument("--disable-gpu")
 options.add_argument("--window-size=1920x1080")
 driver = webdriver.Chrome(options=options)
-
+s=0
 for ticker in tickers:
     plots=[]
 
@@ -69,7 +69,9 @@ for ticker in tickers:
     driver.get(f'https://finance.yahoo.com/calendar/earnings?symbol={ticker}')
 
     # Remove next line if you are in the US. It accepts the cookies on the pop up page. No pop up page in the US
-    WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.accept-all'))).click()
+    if s==0:
+        WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, '.accept-all'))).click()
+    s=1
     data=[]
     for row in (driver.find_elements(By.XPATH, '//div[@id="fin-cal-table"]//tr')):
         cols = row.find_elements(By.TAG_NAME, 'td')
